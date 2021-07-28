@@ -9,7 +9,7 @@ objButton.action = function () {
 			return;
 		}
 		else {
-			console.log("Ошибка"); 
+			console.log(`Ошибка: ${response.error}`); 
 			return;
 		}
 	});
@@ -21,7 +21,7 @@ ApiConnector.current(response => {
 	return;
 }
 else {
-	console.log("Ошибка"); 
+	console.log(`Ошибка: ${response.error}`); 
 	return;
 }
 });
@@ -37,7 +37,7 @@ let f = function () {
 			return;
 		}
 		else {
-			console.log("Ошибка"); 
+			console.log(`Ошибка: ${responseBody.error}`); 
 			return;
 		}
 	});
@@ -54,7 +54,7 @@ ApiConnector.addMoney(data, (response) => {
 		userMoneyManager.setMessage(response.success, "Счет пополнен");
 	}
 else {
-	userMoneyManager.setMessage(response.success, "Ошибка пополнения");
+	userMoneyManager.setMessage(response.success, `Ошибка пополнения: ${response.error}`);
 }
 });
 
@@ -68,7 +68,7 @@ ApiConnector.convertMoney(data, (response) =>
 //location.reload();
 }
 else {
-	userMoneyManager.setMessage(response.success, "Ошибка конвертации");
+	userMoneyManager.setMessage(response.success, `Ошибка конвертации: ${response.error}`);
 }
 });
 
@@ -78,10 +78,10 @@ ApiConnector.transferMoney(data, (response) =>
 {
 	if(response.success === true) {
 		ProfileWidget.showProfile(response.data);
-		userMoneyManager.setMessage(response.success, "Перевод выпополнен");
+		userMoneyManager.setMessage(response.success, "Перевод выполнен");
 }
 else {
-	userMoneyManager.setMessage(response.success, "Ошибка перевода");
+	userMoneyManager.setMessage(response.success, `Ошибка перевода: ${response.error}`);
 }
 });
 
@@ -117,7 +117,7 @@ ApiConnector.addUserToFavorites(data, (response) =>
 		FavoritesUsers.setMessage(response.success, "Пользователь добавлен");
 	}
 	else {
-		FavoritesUsers.setMessage(response.success, "Ошибка добавления");
+		FavoritesUsers.setMessage(response.success, `Ошибка: ${response.error}`);
 	}
 });
 
@@ -132,7 +132,7 @@ FavoritesUsers.removeUserCallback = (id) => {
 			return;
 		}
 		else {
-			FavoritesUsers.setMessage(response.success, "Ошибка удаления");
+			FavoritesUsers.setMessage(response.success, `Ошибка: ${response.error}`);
 		}
 	});
 }
